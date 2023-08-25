@@ -79,5 +79,31 @@ class Assignment6{
         }while(true);
     
     }
-    
+
+     public static String manageSystem(){
+        
+        System.out.println("\t[1]. Create New Account");
+        System.out.println("\t[2]. Deposit Money");
+        System.out.println("\t[3]. Withdraw Money");
+        System.out.println("\t[4]. Transfer Money");
+        System.out.println("\t[5]. Check Account Balance");
+        System.out.println("\t[6]. Drop Existing Account");
+        System.out.println("\t[7]. Exit\n");
+        System.out.print("\tEnter an option to continue: ");
+        int option = SCANNER.nextInt();
+        SCANNER.nextLine();
+
+        switch (option){
+            case 1: screen = CREATE_NEW_ACCOUNT; break;
+            case 2: screen = DEPOSITS; break;
+            case 3: screen = WITHDROWAL; break;
+            case 4: screen = TRANSFER; break;
+            case 5: screen = CHECK_ACCOUNT_BALANCE ; break;
+            case 6: screen = DELETE_ACCOUNT; break;
+            case 7: System.out.println(CLEAR); System.exit(0);
+            default: break;
+        }
+        return screen;
+    }
+
 }
