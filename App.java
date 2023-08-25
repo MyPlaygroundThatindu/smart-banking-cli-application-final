@@ -203,4 +203,37 @@ class Assignment6{
 
     }
 
+    public static void withrowAmmount(){
+        do{
+            int checkingAccount=-1;
+            Double currentBlance=-1.0;
+            double newWithdrow=-1.0;
+
+            String checkId =accountNoValidation("to Withdrow");//
+
+            if(checkId.length()>0){
+                checkingAccount=accountChecking(checkId,"Withdrow");//positive if accont can withdrow
+            }
+            if(checkingAccount>= 0){
+                currentBlance =depositArray.get(checkingAccount);
+            }
+            
+            if(checkingAccount>=0&&currentBlance>0){
+                newWithdrow=possibilityChecking(currentBlance,"Withdrow");//check About withdrowing ammount
+            }
+            if(newWithdrow>0){
+                currentBlance-=newWithdrow;
+                depositArray.set(checkingAccount,currentBlance);
+                System.out.printf(SUCCESS_MSG,"Withdrow Successfull new Balance : "+currentBlance);
+            }
+
+            System.out.print("Do you want to continue Withdrowing (Y/n)? ");
+            if (SCANNER.nextLine().strip().toUpperCase().equals("Y"))continue;
+            break;
+
+        }while(true);
+        
+        
+    }
+
 }
