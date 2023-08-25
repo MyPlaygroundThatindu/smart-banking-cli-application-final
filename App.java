@@ -361,4 +361,56 @@ class Assignment6{
         return checkId;
     }
 
+    public static int accountChecking(String checkId,String l){//check the accunt is ok to continue and if ok send the account index
+        int checkingAccount=-1;
+        loop1:
+        do{
+            
+            checkingAccount=idArray.indexOf(checkId);
+            double currentBlance =depositArray.get(checkingAccount);
+            System.out.printf("Your Account current Balance: Rs%.2f\n",currentBlance);
+            if(currentBlance<500){
+                System.out.printf(ERROR_MSG,"Rs"+currentBlance+" is UnsufficentBalance You cant "+l+" press N to go to Main Manu\n");
+                SCANNER.nextLine();
+                checkingAccount=-1;
+                break loop1;  
+                
+            }
+            
+            break;
+            
+
+        }while (true); 
+        //System.out.println(checkingAccount);   
+        return checkingAccount;
+                
+    }
+
+     public static double possibilityChecking(double currentBlance,String l){//check about the ammount try to handle and return managing ammount
+        double newManaging =-1;
+        do{
+            System.out.print("Enter Your "+l+" Ammount : ");
+            newManaging =SCANNER.nextDouble();
+            SCANNER.nextLine();
+            if(newManaging<100){
+                System.out.printf(ERROR_MSG,"Minumam"+l+" ammount is Rs.500");
+                System.out.print("Do You Want to continue (Y/N): ");
+                if(SCANNER.nextLine().strip().toUpperCase().equals("Y")) continue;
+                newManaging =-1;
+                break;
+            }
+            if((currentBlance-newManaging)<500){
+                System.out.printf(ERROR_MSG,"You dont have sufficent balance of Rs500.00 after witdrowing RS"+newManaging);
+                System.out.print("Do You Want to continue (Y/N): ");
+                if(SCANNER.nextLine().strip().toUpperCase().equals("Y")) continue;
+                newManaging =-1;
+                break;
+            }
+                  
+            break;
+
+        }while(true);
+        return newManaging;  
+    }
+
 }
