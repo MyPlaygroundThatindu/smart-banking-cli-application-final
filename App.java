@@ -315,4 +315,50 @@ class Assignment6{
 
     }
 
+    public static String accountNoValidation(String l){//Imform about searching account
+        String checkId;
+        loop:
+        do{
+            System.out.print("Enter Account Number "+l+" : ");
+            checkId=SCANNER.nextLine().strip();
+
+            if(checkId.isBlank()){
+                System.out.printf(ERROR_MSG,"Account Number cant be empty");
+                System.out.print("Do you want to continue adding (Y/n)? ");
+                if (SCANNER.nextLine().strip().toUpperCase().equals("Y"))continue;
+                checkId=null;
+                break;
+            }
+            if(checkId.length()!=8){
+                System.out.printf(ERROR_MSG,"Invalid Account Number");
+                System.out.print("Do you want to continue adding (Y/n)? ");
+                if (SCANNER.nextLine().strip().toUpperCase().equals("Y"))continue;
+                checkId=null;
+                break;
+            }
+                
+            for (int i = 3; i < checkId.length(); i++) {
+                if(!(checkId.startsWith("SDB")&&Character.isDigit(checkId.charAt(i)))){
+                    System.out.printf(ERROR_MSG, "Invalid Account Number");
+                    System.out.print("Do you want to continue adding (Y/n)? ");
+                    if (SCANNER.nextLine().strip().toUpperCase().equals("Y"))continue loop;
+                    checkId=null;
+                    break;    
+                }
+            }
+            if(!idArray.contains(checkId)){
+                System.out.printf(ERROR_MSG, "Invalid Account Number");
+                System.out.print("Do you want to continue adding (Y/n)? ");
+                if (SCANNER.nextLine().strip().toUpperCase().equals("Y"))continue loop;
+                checkId=null;
+                break; 
+
+            }
+         
+            break;
+
+        }while(true);
+        return checkId;
+    }
+
 }
