@@ -236,4 +236,41 @@ class Assignment6{
         
     }
 
+    public static void transferAmmount(){
+        do{
+            int checkingAccount1=-1;
+            Double currentBlance1=-1.0;
+            double newWithdrow=-1.0;
+            String checkId1 =accountNoValidation("to Transfer");
+            String checkId2 =accountNoValidation("to Resive");
+            if(checkId1.length()>0){
+                checkingAccount1=accountChecking(checkId1,"Transfer");//positive if accont can withdrow
+            }
+            if(checkingAccount1>= 0){
+                currentBlance1 =depositArray.get(checkingAccount1);
+            }
+            int checkingAccount=idArray.indexOf(checkId2);
+            double currentBalance2=depositArray.get(checkingAccount);
+            System.out.printf("Resiving Account current Balance: Rs%.2f\n",currentBalance2);
+            
+            if(checkingAccount1>=0){
+                newWithdrow=possibilityChecking(currentBlance1,"From RS ");//check About withdrowing ammount
+            } 
+            if(newWithdrow>0&&currentBlance1>=0){
+                System.out.printf(ERROR_MSG,"%2 deduct for transfering");
+                currentBlance1-=(newWithdrow*1.02);
+                currentBalance2+=(newWithdrow*1.02);
+            }
+            System.out.println("From Account Balance: "+currentBlance1);   
+            System.out.println("To Account Balance: "+currentBalance2); 
+
+            System.out.printf(SUCCESS_MSG,"Transfer Successfull");
+            System.out.print("Do you want to continue Tranfering (Y/n)? ");
+            if (SCANNER.nextLine().strip().toUpperCase().equals("Y"))continue;
+            break;
+        }while(true);
+
+ 
+    }
+
 }
