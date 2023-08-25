@@ -162,4 +162,45 @@ class Assignment6{
 
     }
 
+     public static void continueDeposit(){
+        do{
+            String checkId =accountNoValidation("To Deposit");
+            if(checkId.length()>0){
+                int checkingIndex=idArray.indexOf(checkId);
+                Double currentBlance =depositArray.get(checkingIndex);
+                System.out.printf("Your Account current Balance: Rs%.2f\n",currentBlance);
+                
+                loop:
+                do{
+                    System.out.print("Enter Your Deposit Ammount : ");
+                    Double newDeposit =SCANNER.nextDouble();
+                    SCANNER.nextLine();
+                    if(newDeposit<500){
+                        System.out.printf(ERROR_MSG,"Minumam Deposit is Rs.500");
+                        System.out.print("Do You Want to continue (Y/N): ");
+                        if(SCANNER.nextLine().strip().toUpperCase().equals("Y")) continue loop;
+                        break;
+                    }
+                    currentBlance+=newDeposit;
+                    depositArray.set(checkingIndex,currentBlance);
+                    System.out.printf(SUCCESS_MSG,"Deposit Successfull new Balance : "+currentBlance);
+                    
+                    
+                    break;
+
+                }while(true);
+            
+            }else{
+            System.out.printf(ERROR_MSG,"Invalid Account Number");
+            System.out.print("Do you want to continue (Y/n)? ");
+            if (SCANNER.nextLine().strip().toUpperCase().equals("Y"))continue;
+            }
+            System.out.print("Do you want to continue depositing (Y/n)? ");
+            if (SCANNER.nextLine().strip().toUpperCase().equals("Y"))continue;
+            break;
+
+        }while(true);    
+
+    }
+
 }
