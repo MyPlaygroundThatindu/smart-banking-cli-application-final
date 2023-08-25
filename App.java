@@ -106,4 +106,60 @@ class Assignment6{
         return screen;
     }
 
+    public static void createNewAccount(){
+
+        //ID Validation
+
+        String accountIdName =String.format("SDB%05d", (idArray.size() + 1));
+        idArray.add(accountIdName);
+        System.out.println("New Account ID : "+accountIdName);
+
+        // Name Validation
+
+        String name;                 
+        loop:
+        do{
+            System.out.print("Enter Customer Name : ");
+            name = SCANNER.nextLine().strip();
+
+            if(name.isBlank()){
+                System.out.printf(ERROR_MSG,"Name Cant be Empty");
+                continue;
+            } 
+            for (int i = 0; i < name.length(); i++) {
+                if (!(Character.isLetter(name.charAt(i)) || 
+                    Character.isSpaceChar(name.charAt(i))) ) {
+                    System.out.printf(ERROR_MSG, "Invalid Customer name");
+                    continue loop;
+                }
+            }
+            break;
+
+        }while(true);
+
+        nameArray.add(name);
+
+        //Initial Deposit
+
+        boolean valid;
+        Double initialDeposit;
+        do{
+            valid =true;
+            System.out.print("Enter your Initial Deposit : ");
+            initialDeposit = SCANNER.nextDouble();
+            SCANNER.nextLine();
+
+            if(initialDeposit<5000){
+                System.out.printf(ERROR_MSG,"Insufficient Ammount");
+                valid=false;
+            }
+
+        }while(!valid);
+
+        depositArray.add(initialDeposit);
+        //System.out.println(depositArray);
+        System.out.printf(SUCCESS_MSG, String.format("Account Number %s: %s has been saved successfully", accountIdName, name));
+
+    }
+
 }
