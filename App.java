@@ -273,4 +273,28 @@ class Assignment6{
  
     }
 
+    public static void checkAccountBalance(){
+        do{
+            String checkId =accountNoValidation("to check Balance");//
+            if(checkId.length()>0){
+                int checkingAccount=idArray.indexOf(checkId);
+                String name =nameArray.get(checkingAccount);
+                double accountBalance =depositArray.get(checkingAccount);
+                System.out.printf(SUCCESS_MSG,"Account Owner Name: "+name);
+                System.out.printf(SUCCESS_MSG,"Current Account Balance: "+accountBalance);
+                double possibleBalanceToWithdrow=accountBalance-500;
+                System.out.printf(SUCCESS_MSG,"Possible Withdrow Ammount: "+possibleBalanceToWithdrow); 
+            }
+
+            System.out.print("Do you want to continue Checking (Y/n)? ");
+            if (SCANNER.nextLine().strip().toUpperCase().equals("Y"))continue;
+            break;
+
+
+        }while(true);
+        
+        
+        
+    }
+
 }
